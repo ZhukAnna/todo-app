@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import '../post-list-item/post-list-item.css';
+import { sortableHandle } from 'react-sortable-hoc';
+
+const DragHandle = sortableHandle(() => <span className='handle'></span>);
 
 export default class PostListItem extends Component {
-
 
     render() {
 
@@ -18,7 +20,9 @@ export default class PostListItem extends Component {
         }
 
         return (
+
             <div className={classes}>
+                <DragHandle />
                 <span className="app-list-item__label" onClick={onToggleLiked}>
                     {label}
                 </span>

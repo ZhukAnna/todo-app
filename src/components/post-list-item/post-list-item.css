@@ -15,7 +15,7 @@
     outline: none;
 }
 .app-list-item .btn-star {
-    color: #FFD700;
+    color: #aeaeae;
 }
 .app-list-item .btn-trash {
     color: red;
@@ -34,6 +34,7 @@
 
 .app-list-item__label {
   display: block;
+  margin-right: auto;
   line-height: 35px;
   cursor: pointer;
   user-select: none;
@@ -45,10 +46,23 @@
     transform: translateX(0px);
 }
 
-.app-list-item.important .app-list-item-label {
-  color: #FFD700;
+.app-list-item.important .app-list-item__label {
+  font-weight: 600;
 }
 
 .app-list-item.important .btn-star {
-    color: #aeaeae;
+    color: #FFD700;
+}
+
+.handle {
+  position: relative;
+  top: 0.5em;
+  display: block;
+  width: 18px;
+  height: 11px;
+  opacity: .25;
+  margin-right: 20px;
+  cursor: row-resize;
+  background: -webkit-linear-gradient(top,#000,#000 20%,#fff 0,#fff 40%,#000 0,#000 60%,#fff 0,#fff 80%,#000 0,#000);
+  background: linear-gradient(180deg,#000,#000 20%,#fff 0,#fff 40%,#000 0,#000 60%,#fff 0,#fff 80%,#000 0,#000);
 }

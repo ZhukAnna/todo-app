@@ -5,8 +5,15 @@ import SearchPanel from '../search-panel/';
 import PostFilter from '../post-status-filter/';
 import PostList from '../post-list/';
 import PostAddForm from '../post-add-form';
-
 import './app.css';
+
+function arrayMove(array, from, to) {
+
+    array = array.slice();
+    array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
+    console.log(array);
+    return array;
+}
 
 export default class App extends Component {
     constructor(props) {
@@ -15,7 +22,7 @@ export default class App extends Component {
             data: [
                 { label: 'Going to eat', important: true, like: false, id: 1 },
                 { label: 'Sleep', important: false, like: false, id: 2 },
-                { label: 'Play in football', important: false, like: false, id: 3 }
+                { label: 'Play in volleyball', important: false, like: false, id: 3 }
             ],
             term: '',
             filter: 'all'
@@ -26,6 +33,7 @@ export default class App extends Component {
         this.onToggleLiked = this.onToggleLiked.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
+        this.onSortEnd = this.onSortEnd(this);
 
         this.maxId = 4;
     }
@@ -106,6 +114,12 @@ export default class App extends Component {
         this.setState({ filter });
     }
 
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.setState(({ data }) => ({
+            data: arrayMove(data, oldIndex, newIndex),
+        }));
+    }
+
     render() {
         const { data, term, filter } = this.state;
         const liked = data.filter(item => item.like).length;
@@ -128,7 +142,9 @@ export default class App extends Component {
                     posts={visiblePosts}
                     onDelete={this.deleteItem}
                     onToggleImportant={this.onToggleImportant}
-                    onToggleLiked={this.onToggleLiked} />
+                    onToggleLiked={this.onToggleLiked}
+                    onSortEnd={this.onSortEnd}
+                    useDragHandle />
                 <PostAddForm onAdd={this.addItem} />
             </div>
         )
