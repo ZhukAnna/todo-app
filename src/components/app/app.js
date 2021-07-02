@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-
+import arrayMove from 'array-move';
 import AppHeader from '../app-header/';
 import SearchPanel from '../search-panel/';
 import PostFilter from '../post-status-filter/';
 import PostList from '../post-list/';
 import PostAddForm from '../post-add-form';
 import './app.css';
-
-function arrayMove(array, from, to) {
-
-    array = array.slice();
-    array.splice(to < 0 ? array.length + to : to, 0, array.splice(from, 1)[0]);
-    console.log(array);
-    return array;
-}
 
 export default class App extends Component {
     constructor(props) {
@@ -33,7 +25,7 @@ export default class App extends Component {
         this.onToggleLiked = this.onToggleLiked.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
         this.onFilterSelect = this.onFilterSelect.bind(this);
-        this.onSortEnd = this.onSortEnd(this);
+        this.onSortEnd = this.onSortEnd.bind(this);
 
         this.maxId = 4;
     }
@@ -114,10 +106,13 @@ export default class App extends Component {
         this.setState({ filter });
     }
 
-    onSortEnd = ({ oldIndex, newIndex }) => {
+    onSortEnd({ oldIndex, newIndex }) {
         this.setState(({ data }) => ({
             data: arrayMove(data, oldIndex, newIndex),
         }));
+        console.log(oldIndex);
+        console.log(newIndex);
+        console.log(this.state.data);
     }
 
     render() {
