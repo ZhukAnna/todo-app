@@ -28,7 +28,7 @@ export default class App extends Component {
         this.onFilterSelect = this.onFilterSelect.bind(this);
         this.onSortEnd = this.onSortEnd.bind(this);
 
-        this.maxId = 4;
+        this.maxId = 5;
     }
 
     deleteItem(id) {
