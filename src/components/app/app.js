@@ -15,7 +15,7 @@ export default class App extends Component {
                 { label: 'Coding', important: true, like: false, id: 1 },
                 { label: 'Eat', important: false, like: false, id: 2 },
                 { label: 'Sleep', important: false, like: false, id: 3 },
-                { label: 'Repeat', important: true, like: false, id: 3 }
+                { label: 'Repeat', important: true, like: false, id: 4 }
             ],
             term: '',
             filter: 'all'
