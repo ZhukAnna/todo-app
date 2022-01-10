@@ -1,4 +1,4 @@
-#React App
+# React App
 
 Demo page: https://zhukanna.github.io/todo-app/
 
